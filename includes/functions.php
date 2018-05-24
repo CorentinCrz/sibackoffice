@@ -15,8 +15,9 @@ function adminHead(string $title, $path): void
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="googlebot" content="noindex">
+        <meta name="robots" content="noindex">
         <title><?=$title?></title>
-<!--        <link rel="stylesheet" href="--><?//= APP_ROOT_DIR."/style.css" ?><!--">-->
         <style>
             body {
                 width: 90%;
@@ -41,7 +42,6 @@ function adminHead(string $title, $path): void
                 justify-content: space-around;
             }
             .top {
-                width: 30%;
                 text-align: center;
             }
             .flexbet {

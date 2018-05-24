@@ -69,6 +69,8 @@ if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSessio
                 `top`
                 WHERE
                 `category` = :category
+                ORDER BY top
+                ASC LIMIT 0, 100
                 ;
                 ";
                 $stmt = $pdo->prepare($sql);
