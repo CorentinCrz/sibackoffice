@@ -6,26 +6,28 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Listes des partenaires');
+adminHead('Listes des photographies', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
     exit;
 }
 ?>
-<section style="section">
-    <h1 style="pdf">Nos partenaires</h1>
-    <a href="add.php">Ajouter un partenaire</a>
-    <div>
-        <table>
-            <tr>
-                <th>Nom</th>
-                <th>Action</th>
-            </tr>
-            <?php partnerList($pdo, 1000000); ?>
-        </table>
-    </div>
-</section>
+    <section class="section">
+        <h1 class="picbox">La Boîte à image</h1>
+        <a href="picbox/add.php">Ajouter une image</a>
+        <div>
+            <table cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <th>Nom</th>
+                    <th>alt</th>
+                    <th>src</th>
+                    <th>Action</th>
+                </tr>
+                <?php picboxList($pdo,  ''); ?>
+            </table>
+        </div>
+    </section>
 <?php
 adminFoot();
 

@@ -4,14 +4,6 @@ if (isset($_POST['login']) && isset($_POST['password']))
     $_SESSION['login'] = $_POST['login'];
     $_SESSION['password'] = $_POST['password'];
 }
-require_once "../../includes/connection.php";
-require_once "../../includes/functions.php";
-adminHead('Top 100 des');
-if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
-{
-    adminConnection();
-    exit;
-}
 if (isset($_GET['cat']))
 {
     $cat = $_GET['cat'];
@@ -34,6 +26,14 @@ switch ($cat) {
         $cat = 'SPAs et Thalassos';
         break;
 }
+require_once "../../includes/connection.php";
+require_once "../../includes/functions.php";
+adminHead('Top 100 des meilleurs '.$cat, '../');
+if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
+{
+    adminConnection();
+    exit;
+}
 ?>
     <section class="section">
         <h1 class="post">Les top 100</h1>
@@ -52,9 +52,9 @@ switch ($cat) {
             </div>
         </div>
         <div>
-            <h1>Les Meilleurs <?= $cat ?></h1>
+            <h1 style="font-size: 1.6rem;">Les Meilleurs <?= $cat ?></h1>
             <a href="add.php">Ajouter au top</a>
-            <table>
+            <table cellspacing="0" cellpadding="0" width="100%">
                 <tr>
                     <th>Top</th>
                     <th>Nom</th>

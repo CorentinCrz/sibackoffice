@@ -5,7 +5,7 @@
  * Date: 23/05/2018
  * Time: 14:48
  */
-function adminHead(string $title): void
+function adminHead(string $title, $path): void
 {
     ?>
     <!doctype html>
@@ -34,6 +34,7 @@ function adminHead(string $title): void
                 border-radius: 5px;
                 margin: 20px;
                 padding: 10px;
+                background: lightgray;
             }
             .flex {
                 display: flex;
@@ -59,7 +60,7 @@ function adminHead(string $title): void
     </head>
     <body>
     <header>
-        <a href="">Admin</a>
+        <a href="<?=$path?>">Admin</a>
     </header>
     <?php
 }
@@ -172,7 +173,9 @@ FROM
     while(false !== $row = $stmt->fetch(PDO::FETCH_ASSOC)):
         ?>
         <tr>
-            <td><a href="<?=$dir?>show.php?id=<?=$row['idpic']?>"><?=$row['h1']?></a></td>
+            <td><?=$row['h1']?></td>
+            <td><?=$row['imgalt']?></td>
+            <td><?=$row['imgsrc']?></td>
             <td>
                 <a href="<?=$dir?>delete.php?id=<?=$row['idpic']?>">Supprimer</a>
                 <a href="<?=$dir?>edit.php?id=<?=$row['idpic']?>">Modifier</a>

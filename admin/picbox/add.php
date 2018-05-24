@@ -6,16 +6,15 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Ajout des partenaires');
+adminHead('Ajout des photographies', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
     exit;
 }
 ?>
-    <form action="doadd.php" method="post">
+    <form action="doadd.php" method="post" enctype="multipart/form-data">
         <label for="h1">h1</label> <input type="text" name="h1" required data-error="Ajoutez un titre"><br>
-        <label for="p">p</label> <input type="text" name="p" required data-error="Ajoutez un paragraphe"><br>
         <label for="imgalt">imgalt</label> <input type="text" name="imgalt" required data-error="Ajoutez un alt"><br>
         <label for="imgsrc">imgsrc</label> <input type="file" name="imgsrc" required data-error="Ajoutez une image"><br>
         <input type="submit" value="Ajouter">

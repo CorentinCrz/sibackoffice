@@ -6,7 +6,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Listes des fiches pratiques', '../');
+adminHead('Modification d\'une fiche pdf', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
@@ -17,34 +17,26 @@ if (!isset($_GET['id'])) {
     exit;
 }
 $sql = "SELECT
-  `slug`,
-  `title`,
-  `category`,
   `h1`,
   `p`,
-  `imgalt`,
-  `imgsrc`,
   `url`
 FROM
-  `post`
+  `pdf`
 WHERE
-  `idpost` = :idpost
+  `idpdf` = :id
 ;";
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':idpost', $_GET['id'], PDO::PARAM_STR);
+$stmt->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
-    <div style="text-align: center">
-        <h1>Slug : <?= $row['slug'] ?></h1>
-        <h1>Titre de la page : <?= $row['title'] ?></h1>
-        <h1>Titre : <?= $row['h1'] ?></h1>
-        <p>Catégorie : <?= $row['p'] ?><br>
-        Contenu : <?= $row['p'] ?><br>
-        Image alt : <?= $row['p'] ?><br>
-        Image source : <?= $row['p'] ?><br>
-        Lien : <?= $row['url'] ?></p>
-    </div>
+    <form action="doedit.php" method="post">
+        <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+        <label for="h1">h1</label> <input type="text" name="h1" required data-error="Ajoutez un titre" value="<?= $row['h1'] ?>"><br>
+        <label for="p">p</label> <textarea type="text" name="p" required data-error="Ajoutez un p"><?= $row['p'] ?></textarea><br>
+        <label for="url">url</label> <input type="text" name="url" required data-error="Ajoutez un alt" value="<?= $row['url'] ?>"><br>
+        <input type="submit" value="Modifier">
+    </form>
 <?php
 adminFoot();
 

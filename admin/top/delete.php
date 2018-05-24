@@ -6,7 +6,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Supresssion top');
+adminHead('Supresssion d\'une fiche top', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();

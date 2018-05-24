@@ -6,7 +6,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Listes des fiches pratiques');
+adminHead('Listes des fiches pratiques', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
@@ -17,7 +17,7 @@ if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSessio
     <h1 class="post">Fiches pratiques</h1>
     <a href="add.php">Ajouter une fiche</a>
     <div>
-        <table>
+        <table cellspacing="0" cellpadding="0" width="100%">
             <tr>
                 <th>Nom</th>
                 <th>categorie</th>

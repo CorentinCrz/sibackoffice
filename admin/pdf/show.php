@@ -6,7 +6,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Supressiond\'une fiche pratique', '../');
+adminHead('Listes des fiches pdf', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
@@ -17,22 +17,24 @@ if (!isset($_GET['id'])) {
     exit;
 }
 $sql = "SELECT
-  `h1`
+  `h1`,
+  `p`,
+  `url`
 FROM
-  `post`
+  `pdf`
 WHERE
-  `idpost` = :idpost
+  `idpdf` = :id
 ;";
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':idpost', $_GET['id'], PDO::PARAM_STR);
+$stmt->bindValue(':id', $_GET['id'], PDO::PARAM_STR);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
-<form action="dodelete.php" method="post">
-    <input type="hidden" name="id" value="<?=$_GET['id']?>">
-    <label for="">Supprimer de manière definitive <?=$row['h1']?> ?</label><br>
-    <input type="submit" value="Supprimer">
-</form>
+<div style="text-align: center">
+    <h1>Titre : <?= $row['h1'] ?></h1>
+    <p>Résumé : <?= $row['p'] ?></p>
+    <p>Lien : <?= $row['url'] ?></p>
+</div>
 <?php
 adminFoot();
 

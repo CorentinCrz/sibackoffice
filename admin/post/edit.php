@@ -6,7 +6,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../../includes/connection.php";
 require_once "../../includes/functions.php";
-adminHead('Listes des fiches pratiques');
+adminHead('Modification d\'une fiche pratique', '../');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
@@ -42,7 +42,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         <label for="title">title</label> <input type="text" name="title" required data-error="Sélectionnez un titre" value="<?= $row['title'] ?>"><br>
         <label for="category">category</label> <input type="text" name="category" required data-error="Sélectionnez une categorie" value="<?= $row['category'] ?>"><br>
         <label for="h1">h1</label> <input type="text" name="h1" required data-error="Ajoutez un h1" value="<?= $row['h1'] ?>"><br>
-        <label for="p">p</label> <input type="text" name="p" required data-error="Ajoutez un p" value="<?= $row['p'] ?>"><br>
+        <label for="p">p</label> <textarea type="text" name="p" required data-error="Ajoutez un p"><?= $row['p'] ?></textarea><br>
         <label for="imgalt">imgalt</label> <input type="text" name="imgalt" required data-error="Ajoutez un alt" value="<?= $row['imgalt'] ?>"><br>
         <label for="imgsrc">changer d'image</label> <input type="file" name="imgsrc" data-error="Ajoutez une image"><br>
         <label for="url">url</label> <input type="text" name="url" required data-error="Ajoutez un lien" value="<?= $row['url'] ?>"><br>

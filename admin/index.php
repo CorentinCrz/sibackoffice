@@ -7,7 +7,7 @@ if (isset($_POST['login']) && isset($_POST['password']))
 }
 require_once "../includes/connection.php";
 require_once "../includes/functions.php";
-adminHead('Admin');
+adminHead('Admin', '');
 if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSession($pdo, $_SESSION['login'], $_SESSION['password']))
 {
     adminConnection();
@@ -50,33 +50,35 @@ if ((!isset($_SESSION['login']) || !isset($_SESSION['password'])) || adminSessio
     </div>
 </section>
 
-<!--<section class="section">-->
-<!--    <h1 class="pdf">Fiches pdf Calameo</h1>-->
-<!--    <div class="flexbet">-->
-<!--        <a href="pdf/add.php">Ajouter une fiche</a>-->
-<!--        <a href="pdf/" class="linkList">Voir la liste complete des fiches pdf</a>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <table cellspacing="0" cellpadding="0" width="100%">-->
-<!--            <tr>-->
-<!--                <th>Nom</th>-->
-<!--                <th>Action</th>-->
-<!--            </tr>-->
-<!--            --><?php //pdfList($pdo, 10, 'pdf/'); ?>
-<!--        </table>-->
-<!--    </div>-->
-<!--</section>-->
+<section class="section">
+    <h1 class="pdf">Fiches pdf Calameo</h1>
+    <div class="flexbet">
+        <a href="pdf/add.php">Ajouter une fiche</a>
+        <a href="pdf/" class="linkList">Voir la liste complete des fiches pdf</a>
+    </div>
+    <div>
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th>Nom</th>
+                <th>Action</th>
+            </tr>
+            <?php pdfList($pdo, 10, 'pdf/'); ?>
+        </table>
+    </div>
+</section>
 
 <section class="section">
     <h1 class="picbox">La Boîte à image</h1>
     <a href="picbox/add.php">Ajouter une image</a>
     <div>
-        <table>
+        <table cellspacing="0" cellpadding="0" width="100%">
             <tr>
                 <th>Nom</th>
+                <th>alt</th>
+                <th>src</th>
                 <th>Action</th>
             </tr>
-            <?php picboxList($pdo, 100, 'picbox/'); ?>
+            <?php picboxList($pdo,  'picbox/'); ?>
         </table>
     </div>
 </section>
