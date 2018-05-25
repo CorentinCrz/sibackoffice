@@ -39,10 +39,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         <h1>Slug : <?= $row['slug'] ?></h1>
         <h1>Titre de la page : <?= $row['title'] ?></h1>
         <h1>Titre : <?= $row['h1'] ?></h1>
-        <p>Catégorie : <?= $row['p'] ?><br>
+        <p>Catégorie : <?= $row['category'] ?><br>
         Contenu : <?= $row['p'] ?><br>
-        Image alt : <?= $row['p'] ?><br>
-        Image source : <?= $row['p'] ?><br>
+        Image alt : <?= $row['imgalt'] ?><br>
+        Image source : <?= $row['imgsrc'] ?><br>
         Lien : <?= $row['url'] ?></p>
     </div>
 <?php
